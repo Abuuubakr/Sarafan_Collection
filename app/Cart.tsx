@@ -146,7 +146,7 @@ const Cart = () => {
                         <div className="flex items-center space-x-2.5">
                           <div>
                             <button
-                              onClick={() => dispatch(increment(e))}
+                              onClick={() => dispatch(increment(e.id))}
                               className="cursor-pointer text-[20px]"
                             >
                               +
@@ -155,7 +155,7 @@ const Cart = () => {
                           <div>{e.amount}</div>
                           <div>
                             <button
-                              onClick={() => dispatch(decrement(e))}
+                              onClick={() => dispatch(decrement(e.id))}
                               className="cursor-pointer text-[20px]"
                             >
                               -
