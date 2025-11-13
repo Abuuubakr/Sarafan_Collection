@@ -1,12 +1,16 @@
 "use client";
 import { addNewUser } from "@/store/reducers/usersSlice";
+import { RootState } from "@/store/store";
 import { User } from "@/types/user";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import React, { use, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
-  const [isConfirmed, setIsConfirmed] = useState<Boolean | null>(true);
+  const users = useSelector((state: RootState) => state.users.users);
+  const [isConfirmed, setIsConfirmed] = useState<Boolean | null>(null);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,6 +31,7 @@ const page = () => {
     };
 
     dispatch(addNewUser(newUser));
+    router.push('/Personal_Account/Login')
   };
 
   return (
@@ -62,7 +67,9 @@ const page = () => {
             </div>
             <div
               className="my-2.5 text-center"
-              style={{ display: !isConfirmed ? "" : "none" }}
+              style={{
+                display: isConfirmed || isConfirmed === null ? "none" : "",
+              }}
             >
               <p className="text-[13px] text-[#C21414]">
                 Не удалось подтвердить пароль.

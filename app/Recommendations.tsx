@@ -22,6 +22,7 @@ const Recommendations = ({ collection, tittle }: RecommendationsType) => {
                 price={e.price}
                 isFavourite={e.isFavourite}
                 isOnCart={e.isOnCart}
+                amount={e.amount}
               />
             </div>
           ))}

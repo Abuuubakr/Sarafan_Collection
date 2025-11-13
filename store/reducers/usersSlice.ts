@@ -6,7 +6,12 @@ interface UsersType {
 }
 
 const initialState: UsersType = {
-  users : [],
+  users : [
+    {
+      email : 'abubakrdavlatzoda@gmail.com',
+      password : '7777'
+    }
+  ],
 };
 
 const usersSlice = createSlice({

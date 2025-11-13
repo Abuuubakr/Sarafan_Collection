@@ -25,6 +25,19 @@ const page = () => {
     },
   ];
 
+  const inputs2 = [
+    {
+      name: "current",
+      placeholder: "Текущий пароль",
+      type: "text",
+    },
+    {
+      name: "new",
+      placeholder: "Новый пароль",
+      type: "text",
+    },
+  ];
+
   return (
     <div className="w-[80%] mx-auto">
       <div className="flex items-center text-[13px] space-x-[5px]">
@@ -38,8 +51,8 @@ const page = () => {
       <div>
         <p className="text-[25px] text-[#2D2D2D]">Личный кабинет</p>
       </div>
-      <div className="mt-[30px] flex justify-between">
-        <div className="w-[55%]">
+      <div className="mt-[30px] flex max-[800px]:flex-col-reverse justify-between min-[1000px]:w-[90%]">
+        <div className="min-[800px]:w-[55%] max-[800px]:mt-20">
           <div>
             <p className="text-[18px] text-[#2D2D2D]">Данные аккаунта</p>
           </div>
@@ -56,9 +69,57 @@ const page = () => {
                 />
               ))}
             </div>
+            <div className="mt-10">
+              <button
+                type="submit"
+                className="w-full max-w-[370px] cursor-pointer text-[#2D2D2D] py-5 border border-[#CECECE]"
+              >
+                Сохранить
+              </button>
+            </div>
           </form>
+          <div className="mt-20">
+            <p className="text-[18px] text-[#2D2D2D]">Смена пароля</p>
+          </div>
+          <form className="mt-10 w-full">
+            <div className="space-y-10 flex flex-col w-full">
+              {inputs2.map((e, i) => (
+                <input
+                  className="w-full outline-none pb-2.5 border-b border-[#DADADA]"
+                  key={i}
+                  type={e.type}
+                  name={e.name}
+                  placeholder={e.placeholder}
+                  required
+                />
+              ))}
+            </div>
+            <div className="mt-10">
+              <button
+                type="submit"
+                className="w-full max-w-[370px] cursor-pointer text-[#2D2D2D] py-5 border border-[#CECECE]"
+              >
+                Изменить пароль
+              </button>
+            </div>
+          </form>
+          <div className="mt-20 text-[#2D2D2D]">
+            <div>
+              <p>Уведомления</p>
+            </div>
+            <div className="flex items-center space-x-2.5 mt-[35px]">
+              <div>
+                <input type="checkbox" checked className="h-[22px] w-[22px]" />
+              </div>
+              <div>
+                <p className="text-[14px] max-w-85">
+                  Я хочу получать рассылку электронных новостей шоурума
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-[35%] space-y-5">
+        <div className="min-[800px]:w-[35%] space-y-5">
           <div>
             <Link href={""}>
               {" "}
