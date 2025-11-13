@@ -17,6 +17,10 @@ const page = () => {
   const catalog = useSelector((state: RootState) => state.catalog.catalog);
   const dispatch = useDispatch();
 
+  if (isNaN(numId) || !catalog[numId - 1]) {
+    return <div className="w-[80%] mx-auto">Loading...</div>;
+  }
+
   const extraProducts = [catalog[5], catalog[6], catalog[7]];
   const recommendations = [catalog[4], catalog[5], catalog[6], catalog[7]];
 
