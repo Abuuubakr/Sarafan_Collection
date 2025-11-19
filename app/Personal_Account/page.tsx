@@ -121,24 +121,15 @@ const page = () => {
         </div>
         <div className="min-[800px]:w-[35%] space-y-5">
           <div>
-            <Link href={""}>
-              {" "}
-              <p className="text-[18px] text-[#2D2D2D]">
-                Основная информация
-              </p>{" "}
-            </Link>
+            <p className="text-[18px] text-[#2D2D2D]">Основная информация</p>
           </div>
           <div>
             <Link href={"/Personal_Account/Orders"}>
-              {" "}
               <p className="text-[18px] text-[#A6A6A6]">Мои заказы</p>{" "}
             </Link>
           </div>
           <div>
-            <Link href={""}>
-              {" "}
-              <p className="text-[18px] text-[#A6A6A6]">Выход</p>{" "}
-            </Link>
+            <p className="text-[18px] text-[#A6A6A6]">Выход</p>{" "}
           </div>
         </div>
       </div>

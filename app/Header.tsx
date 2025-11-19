@@ -60,6 +60,8 @@ const Header = () => {
     "Купальники",
   ];
 
+  const logedUser = useSelector((state: RootState) => state.logedUser.logedUser);
+
   const [open, setOpen] = useState(false);
   const catalog = useSelector((state: RootState) => state.catalog.catalog);
 
@@ -184,7 +186,7 @@ const Header = () => {
               </Link>
             </div>
             <Cart />
-            <Link href={""}>
+            <Link href={logedUser ? '/Personal_Account' : '/Personal_Account/Login'}>
               <div className="hover:text-black cursor-pointer">
                 <BiUser />
               </div>

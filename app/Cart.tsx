@@ -18,6 +18,10 @@ const Cart = () => {
   const [open, setOpen] = useState(false);
 
   const catalog = useSelector((state: RootState) => state.catalog.catalog);
+  const logedUser = useSelector(
+    (state: RootState) => state.logedUser.logedUser
+  );
+
   const cart = catalog.filter((e) => e.isOnCart === true);
   const cartLength = catalog.filter((e) => e.isOnCart === true).length;
 
@@ -59,9 +63,9 @@ const Cart = () => {
     };
   }, [open]);
 
-  const getTotalPrice = (products: Product[]) => {
+   const getTotalPrice = (products: Product[]) => {
     let totalPrice = 0;
-
+    
     products.map((e) => {
       const priceNum = parseInt(e.price.replace(/\s|руб\.?/g, ""));
       totalPrice += priceNum * e.amount;
@@ -194,8 +198,13 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <Link href={""}>
-                    <button className="w-full max-w-[370px] cursor-pointer text-[#2D2D2D] border-2 border-[#CECECE]  py-5 ">
+                  <Link
+                    href={logedUser ? "/Checkout" : "/Personal_Account/Login"}
+                  >
+                    <button
+                      onClick={toggleDrawer}
+                      className="w-full max-w-[370px] cursor-pointer text-[#2D2D2D] border-2 border-[#CECECE]  py-5 "
+                    >
                       <p>Перейти к оформлению</p>
                     </button>
                   </Link>

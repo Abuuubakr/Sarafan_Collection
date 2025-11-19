@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useRouter } from "next/navigation";
+import { loginUser } from "@/store/reducers/logedUserSlice";
 
 const page = () => {
   const users = useSelector((state: RootState) => state.users.users);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [isLoged, setIsLoged] = useState<Boolean | null>(null);
 
@@ -23,6 +25,7 @@ const page = () => {
     if (user) {
       router.push("/Personal_Account");
       setIsLoged(true);
+      dispatch(loginUser(user))
     } else setIsLoged(false);
   };
 
@@ -66,7 +69,7 @@ const page = () => {
             </div>
             <div className="mt-5 text-center flex justify-center">
               <div className="flex space-x-2.5">
-                <Link href={""}>
+                <Link href={"/Personal_Account/Register"}>
                   {" "}
                   <p>Регистрация</p>{" "}
                 </Link>
