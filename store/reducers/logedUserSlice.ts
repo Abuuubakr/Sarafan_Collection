@@ -27,6 +27,9 @@ const logedUserSlice = createSlice({
       const { payload } = action;
       state.logedUser = payload;
     },
+    logOutUser(state){
+      state.logedUser = null;
+    },
     checkoutOrders(state, action) {
       const { payload } = action;
       state.logedUser!.orders.push(payload);
@@ -34,5 +37,5 @@ const logedUserSlice = createSlice({
   },
 });
 
-export const { loginUser, checkoutOrders } = logedUserSlice.actions;
+export const { loginUser, logOutUser, checkoutOrders } = logedUserSlice.actions;
 export default logedUserSlice.reducer;

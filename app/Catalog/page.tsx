@@ -5,7 +5,11 @@ import Card from "./Card";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import { useState } from "react";
-import CatalogFilter from "../CatalogFilter";
+import CatalogFilter from "./CatalogFilter";
+
+type selectedFiltersType = {
+  colors: string[];
+};
 
 const Catalog = () => {
   const catalog = useSelector((state: RootState) => state.catalog.catalog);
@@ -14,6 +18,9 @@ const Catalog = () => {
   );
 
   const [sortValue, setSortValue] = useState("default");
+  const [selectedFilters, setSelectedFilters] = useState<selectedFiltersType>({
+    colors: [],
+  });
 
   const handleSrotChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
@@ -55,7 +62,10 @@ const Catalog = () => {
             </select>
           </div>
           <div>
-            <CatalogFilter/>
+            <CatalogFilter
+              selectedFilters={selectedFilters}
+              setSelectedFilters={setSelectedFilters}
+            />
           </div>
         </div>
       </div>

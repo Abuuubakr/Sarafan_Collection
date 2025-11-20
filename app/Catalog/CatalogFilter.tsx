@@ -4,18 +4,50 @@ import { BiMinus } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { IoAdd } from "react-icons/io5";
 
-const CatalogFilter = () => {
+type selectedFiltersType = {
+  colors: string[];
+};
+
+type CatalogFilterProps = {
+  selectedFilters: selectedFiltersType;
+  setSelectedFilters: React.Dispatch<React.SetStateAction<selectedFiltersType>>;
+};
+
+const CatalogFilter = ({
+  selectedFilters,
+  setSelectedFilters,
+}: CatalogFilterProps) => {
   const [open, setOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState<number[]>([]);
+
+  const colors = ["#CEB9AD", "#C21414", "#2D2D2D", "#063F38"];
+ 
+
+  const handleClick = (color: string) => {
+    setSelectedFilters((prev) => ({
+      colors: prev.colors.includes(color)
+        ? prev.colors.filter((c) => c !== color)
+        : [...prev.colors, color],
+    }));
+  };
 
   const filters = [
     {
       id: 1,
       tittle: "Цвет",
       content: (
-        <>
-          <p>Colors</p>
-        </>
+        <div className="mt-2.5 flex space-x-2 ">
+          {colors.map((e, i) => (
+            <div
+              key={i}
+              className={`w-10 h-[55px] ${
+                selectedFilters?.colors.includes(e) ? "border-2" : ""
+              } hover:border-2 border-black cursor-pointer `}
+              onClick={() => handleClick(e)}
+              style={{ backgroundColor: e }}
+            ></div>
+          ))}
+        </div>
       ),
     },
     {

@@ -1,9 +1,11 @@
 "use client";
+import { logOutUser } from "@/store/reducers/logedUserSlice";
 import { RootState } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
   const logedUser = useSelector(
@@ -11,15 +13,22 @@ const page = () => {
   );
 
   const orders = logedUser?.orders;
+  const dispatch  = useDispatch();
+  const router  = useRouter();
 
-  let today = new Date();
+  const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  let month = (today.getMonth() + 1).toString().padStart(2, "0"); // getMonth() is 0-indexed
-  let day = today.getDate().toString().padStart(2, "0");
-  let year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, "0"); // getMonth() is 0-indexed
+  const day = today.getDate().toString().padStart(2, "0");
+  const year = today.getFullYear();
 
-  let formattedDate = `${month}.${day}.${year}`;
+  const formattedDate = `${month}.${day}.${year}`;
+
+  const handleClick = () => {
+    dispatch(logOutUser())
+    router.push('/Personal_Account/Login')
+  }
 
   return (
     <div className="w-[80%] mx-auto">
@@ -91,7 +100,7 @@ const page = () => {
           <div>
             <p className="text-[18px] text-[#2D2D2D]">Мои заказы</p>{" "}
           </div>
-          <div>
+          <div className="cursor-pointer" onClick={handleClick}>
             {" "}
             <p className="text-[18px] text-[#A6A6A6]">Выход</p>{" "}
           </div>

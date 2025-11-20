@@ -1,5 +1,8 @@
+"use client";
+import { logOutUser } from "@/store/reducers/logedUserSlice";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const page = () => {
   const inputs = [
@@ -37,6 +40,14 @@ const page = () => {
       type: "text",
     },
   ];
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleClick = () => {
+    dispatch(logOutUser());
+    router.push("/Personal_Account/Login");
+  };
 
   return (
     <div className="w-[80%] mx-auto">
@@ -128,7 +139,7 @@ const page = () => {
               <p className="text-[18px] text-[#A6A6A6]">Мои заказы</p>{" "}
             </Link>
           </div>
-          <div>
+          <div className="cursor-pointer" onClick={handleClick}>
             <p className="text-[18px] text-[#A6A6A6]">Выход</p>{" "}
           </div>
         </div>
